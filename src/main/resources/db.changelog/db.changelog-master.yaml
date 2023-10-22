@@ -1,0 +1,13 @@
+databaseChangeLog:
+
+  # sequences
+  - include: { relativeToChangelogFile: true, file: v_1_0_0/01_sequence/planet_seq.yaml }
+
+  # schema
+  - include: { relativeToChangelogFile: true, file: v_1_0_0/02_table/planet-table.yaml }
+
+  # Constraints
+  - include: { relativeToChangelogFile: true, file: v_1_0_0/03_constraint/planet-constraint.yaml }
+
+  #data sets
+  - include: { relativeToChangelogFile: true, file: v_1_0_0/05_data/data_planet.yaml }

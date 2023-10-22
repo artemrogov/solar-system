@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  planet_db:
+    image: postgres:latest
+    restart: unless-stopped
+    container_name: planet_db
+    tty: true
+    environment:
+      POSTGRES_DB: planet
+      POSTGRES_USER: planet
+      POSTGRES_PASSWORD: test123
+    ports:
+      - "5433:5432"
+    volumes:
+      - planet_db_local:/var/lib/postgresql/data/
+    networks:
+      - planet_db_local
+
+networks:
+  planet_db_local:
+    driver: bridge
+
+volumes:
+  planet_db_local:

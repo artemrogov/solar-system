@@ -1,0 +1,46 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: simple-planet-data-tests
+      author: Artem Rogov
+
+      changes:
+        - insert:
+            tableName: planets
+            columns:
+              - column:
+                  name: name
+                  value: 'Jupiter'
+              - column:
+                  name: description
+                  value: 'Jupiter is the fifth planet from the 
+                  Sun and the largest in the Solar System. 
+                  It is a gas giant with a mass more than two and a half times that of all the other planets in the Solar System combined,
+                   and slightly less than one one-thousandth the mass of the Sun.'
+              - column:
+                  name: weight
+                  value: 317.8
+              - column:
+                  name: volume
+                  value: 1.321
+              - column:
+                  name: square
+                  value: 120.4
+        - insert:
+            tableName: planets
+            columns:
+              - column:
+                  name: name
+                  value: 'Saturn'
+              - column:
+                  name: description
+                  value: 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine-and-a-half times that of Earth. It has only one-eighth the average density of Earth, but is over 95 times more massive'
+              - column:
+                  name: weight
+                  value: 95.159
+              - column:
+                  name: volume
+                  value: 763.59
+              - column:
+                  name: square
+                  value: 83.703

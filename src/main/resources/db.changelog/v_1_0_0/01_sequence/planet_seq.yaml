@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - changeSet:
+      id: planet-seq
+      author: Artem Rogov
+      changes:
+        - createSequence:
+            sequenceName: planet-id-seq
+            incrementBy: 1
+            startValue: 100

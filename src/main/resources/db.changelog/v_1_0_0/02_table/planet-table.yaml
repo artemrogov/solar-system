@@ -1,0 +1,32 @@
+databaseChangeLog:
+  - changeSet:
+      id: planet-table
+      author: Artem Rogov
+      changes:
+        - createTable:
+            tableName: planets
+            defaultValueBoolean:  true
+            columns:
+              - column:
+                  name: id
+                  constraints:
+                    nullable: false
+                  type: bigint
+                  defaultValueComputed: nextval('planet-id-seq')
+              - column:
+                  name: name
+                  constraints:
+                    nullable: false
+                  type: varchar
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: weight
+                  type: double
+              - column:
+                  name: volume
+                  type: double
+              - column:
+                  name: square
+                  type: double

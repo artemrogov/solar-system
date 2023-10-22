@@ -1,0 +1,36 @@
+type PlanetResponse{
+    id: ID!
+    name: String!
+    description: String
+    weight: Float
+    volume: Float
+    square: Float
+}
+
+type Query{
+    planetById(id: ID): PlanetResponse
+    planets: [PlanetResponse]
+}
+
+input PlanetInput{
+    name: String!
+    description: String!
+    weight: Float!
+    volume:Float!
+    square: Float!
+}
+
+input PlanetUpdatedInput{
+    name: String
+    description: String
+    weight: Float
+    volume:Float
+    square: Float
+}
+
+type Mutation{
+    createPlanet(planetInput: PlanetInput): PlanetResponse
+    editPlanet(id: ID!,planetUpdatedInput: PlanetUpdatedInput): PlanetResponse
+    destroyPlanet(id: ID!): Boolean
+    destroyByIdsPlanets(ids:[ID]!) : Boolean
+}

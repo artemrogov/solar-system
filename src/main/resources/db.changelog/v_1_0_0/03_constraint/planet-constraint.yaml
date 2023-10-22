@@ -1,0 +1,10 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: planets-constraint
+      author: Artem Rogov
+      changes:
+        - addPrimaryKey:
+            columnNames: id
+            constraintName: planets-id-seqt
+            tableName: planets
