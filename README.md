@@ -1,1 +1,1 @@
-https://docs.spring.io/spring-graphql/reference/controllers.html
+Planets of the solar system. Simple implementation
