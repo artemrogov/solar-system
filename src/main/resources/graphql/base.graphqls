@@ -34,3 +34,8 @@ type Mutation{
     destroyPlanet(id: ID!): Boolean
     destroyByIdsPlanets(ids:[ID]!) : Boolean
 }
+
+type Subscription {
+    planetSubscription:[PlanetResponse]
+    simpleListSubscription:String
+}
