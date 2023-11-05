@@ -1,7 +1,6 @@
 package com.artemrogov.planetarium;
 
 import com.artemrogov.planetarium.resolvers.query.PlanetQueryResolver;
-import com.artemrogov.planetarium.service.PlanetServiceImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;
