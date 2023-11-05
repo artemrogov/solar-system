@@ -2,15 +2,15 @@ package com.artemrogov.planetarium.mapper;
 
 import com.artemrogov.planetarium.domain.Planet;
 import com.artemrogov.planetarium.model.PlanetInput;
-import com.artemrogov.planetarium.model.PlanetResponse;
+import com.artemrogov.planetarium.model.PlanetOutput;
 import org.springframework.stereotype.Component;
 
 
 @Component
 public class PlanetMapper {
 
-    public PlanetResponse convertToResponse(Planet planet){
-        return PlanetResponse.builder()
+    public PlanetOutput convertToResponse(Planet planet){
+        return PlanetOutput.builder()
                 .id(planet.getId())
                 .name(planet.getName())
                 .square(planet.getSquare())
