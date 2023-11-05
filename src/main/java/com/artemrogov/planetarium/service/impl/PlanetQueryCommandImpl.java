@@ -4,7 +4,7 @@ package com.artemrogov.planetarium.service.impl;
 import com.artemrogov.planetarium.dao.PlanetRepository;
 import com.artemrogov.planetarium.domain.Planet;
 import com.artemrogov.planetarium.mapper.PlanetMapper;
-import com.artemrogov.planetarium.model.PlanetResponse;
+import com.artemrogov.planetarium.model.PlanetOutput;
 import com.artemrogov.planetarium.service.command.PlanetQueryCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,12 +25,12 @@ public class PlanetQueryCommandImpl implements PlanetQueryCommand {
         return planetRepository.findById(id).orElseThrow();
     }
     @Override
-    public PlanetResponse getById(Long id) {
+    public PlanetOutput getById(Long id) {
         return planetMapper.convertToResponse(getPlanetById(id));
     }
 
     @Override
-    public List<PlanetResponse> getAll() {
+    public List<PlanetOutput> getAll() {
         return this.planetRepository.findAll()
                 .stream()
                 .map(planetMapper::convertToResponse)

@@ -2,7 +2,7 @@ package com.artemrogov.planetarium.resolvers.mutation;
 
 
 import com.artemrogov.planetarium.model.PlanetInput;
-import com.artemrogov.planetarium.model.PlanetResponse;
+import com.artemrogov.planetarium.model.PlanetOutput;
 import com.artemrogov.planetarium.service.command.PlanetMutateCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -18,13 +18,13 @@ public class PlanetMutatorResolver {
     private final PlanetMutateCommand planetMutateCommand;
 
     @MutationMapping(name = "createPlanet")
-    public PlanetResponse create(@Argument(name = "planetInput") PlanetInput input){
+    public PlanetOutput create(@Argument(name = "planetInput") PlanetInput input){
         return planetMutateCommand.create(input);
     }
 
     @MutationMapping(name = "editPlanet")
-    public PlanetResponse update(@Argument(name = "id") Long id,
-                                 @Argument(name = "planetUpdatedInput") PlanetInput input){
+    public PlanetOutput update(@Argument(name = "id") Long id,
+                               @Argument(name = "planetUpdatedInput") PlanetInput input){
         return planetMutateCommand.update(id,input);
     }
 

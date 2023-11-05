@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PlanetResponse implements Serializable {
+public class PlanetOutput implements Serializable {
 
     @JsonProperty("id")
     private Long id;

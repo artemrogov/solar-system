@@ -1,7 +1,7 @@
 package com.artemrogov.planetarium.resolvers.query;
 
 
-import com.artemrogov.planetarium.model.PlanetResponse;
+import com.artemrogov.planetarium.model.PlanetOutput;
 import com.artemrogov.planetarium.service.command.PlanetQueryCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -16,12 +16,12 @@ public class PlanetQueryResolver {
 
     private final PlanetQueryCommand planetQueryCommand;
     @QueryMapping(value = "planetById")
-    public PlanetResponse getPlanetById(@Argument("id") Long id){
+    public PlanetOutput getPlanetById(@Argument("id") Long id){
         return planetQueryCommand.getById(id);
     }
 
     @QueryMapping(value = "planets")
-    public List<PlanetResponse> getPlanetsAll(){
+    public List<PlanetOutput> getPlanetsAll(){
         return planetQueryCommand.getAll();
     }
 }

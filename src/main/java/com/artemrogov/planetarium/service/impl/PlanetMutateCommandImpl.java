@@ -4,7 +4,7 @@ import com.artemrogov.planetarium.dao.PlanetRepository;
 import com.artemrogov.planetarium.domain.Planet;
 import com.artemrogov.planetarium.mapper.PlanetMapper;
 import com.artemrogov.planetarium.model.PlanetInput;
-import com.artemrogov.planetarium.model.PlanetResponse;
+import com.artemrogov.planetarium.model.PlanetOutput;
 import com.artemrogov.planetarium.service.command.PlanetMutateCommand;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,14 +21,14 @@ public class PlanetMutateCommandImpl implements PlanetMutateCommand {
     private final PlanetMapper planetMapper;
 
     @Override
-    public PlanetResponse create(PlanetInput planetInput) {
+    public PlanetOutput create(PlanetInput planetInput) {
         Planet planet = planetMapper.convertToEntity(planetInput);
         Planet planetCreated = this.planetRepository.save(planet);
         return planetMapper.convertToResponse(planetCreated);
     }
 
     @Override
-    public PlanetResponse update(Long id, PlanetInput planetInput) {
+    public PlanetOutput update(Long id, PlanetInput planetInput) {
         Planet planet = planetRepository.findById(id).orElseThrow();
         this.planetMapper.partUpdate(planetInput,planet);
         Planet planetUpdated = this.planetRepository.save(planet);
