@@ -3,7 +3,7 @@ package com.artemrogov.planetarium.resolvers;
 
 import com.artemrogov.planetarium.dao.SimpleFluxRepository;
 import com.artemrogov.planetarium.model.PlanetResponse;
-import com.artemrogov.planetarium.service.PlanetService;
+import com.artemrogov.planetarium.service.command.PlanetQueryCommand;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.SubscriptionMapping;
 import org.springframework.stereotype.Controller;
@@ -16,11 +16,11 @@ import java.util.List;
 public class SimpleSubscriptionQueryResolver {
 
     private final SimpleFluxRepository simpleFluxRepository;
-    private final PlanetService planetService;
+    private final PlanetQueryCommand planetQueryCommand;
 
     @SubscriptionMapping("planetSubscription")
     public Mono<List<PlanetResponse>> planetSubscription(){
-        return Mono.just(planetService.getPlanets());
+        return Mono.just(planetQueryCommand.getAll());
     }
 
     @SubscriptionMapping("simpleListSubscription")
