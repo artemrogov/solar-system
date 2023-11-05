@@ -1,4 +1,4 @@
-package com.artemrogov.planetarium.resolvers;
+package com.artemrogov.planetarium.resolvers.mutation;
 
 
 import com.artemrogov.planetarium.model.PlanetInput;

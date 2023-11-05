@@ -1,4 +1,4 @@
-package com.artemrogov.planetarium.resolvers;
+package com.artemrogov.planetarium.resolvers.subscription;
 
 
 import com.artemrogov.planetarium.dao.SimpleFluxRepository;
