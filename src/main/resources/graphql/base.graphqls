@@ -1,4 +1,4 @@
-type PlanetResponse{
+type PlanetOutput{
     id: ID!
     name: String!
     description: String
@@ -8,8 +8,8 @@ type PlanetResponse{
 }
 
 type Query{
-    planetById(id: ID): PlanetResponse
-    planets: [PlanetResponse]
+    planetById(id: ID): PlanetOutput
+    planets: [PlanetOutput]
 }
 
 input PlanetInput{
@@ -29,13 +29,13 @@ input PlanetUpdatedInput{
 }
 
 type Mutation{
-    createPlanet(planetInput: PlanetInput): PlanetResponse
-    editPlanet(id: ID!,planetUpdatedInput: PlanetUpdatedInput): PlanetResponse
+    createPlanet(planetInput: PlanetInput): PlanetOutput
+    editPlanet(id: ID!,planetUpdatedInput: PlanetUpdatedInput): PlanetOutput
     destroyPlanet(id: ID!): Boolean
     destroyByIdsPlanets(ids:[ID]!) : Boolean
 }
 
 type Subscription {
-    planetSubscription:[PlanetResponse]
+    planetSubscription:[PlanetOutput]
     simpleListSubscription:String
 }
