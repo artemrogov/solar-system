@@ -1,5 +1,6 @@
 package com.artemrogov.planetarium.graphql;
 
+import com.artemrogov.planetarium.model.PlanetInput;
 import com.artemrogov.planetarium.model.PlanetOutput;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -80,5 +81,36 @@ public class PlanetQueryResolverTests {
         Assertions.assertNotNull(planets.get(0).getId());
         Assertions.assertNotNull(planets.get(0).getName());
 
+    }
+
+    @Test
+    void createPlanet(){
+        PlanetOutput planetOutput =  this.graphQlTester.document("""
+                mutation planetMutation {
+                  createPlanet(planetInput:{
+                    name:"Mars",
+                    description:"Test content"
+                    weight:6.4171
+                    square: 1.4437
+                    volume:1.6318
+                  }){
+                    id
+                    name
+                    description
+                    weight
+                    square
+                    volume
+                  }
+                }
+                """).execute()
+                .path("data.createPlanet")
+                .entity(PlanetOutput.class)
+                .get();
+        Assertions.assertNotNull(planetOutput);
+        assertThat(planetOutput.getName()).isEqualTo("Mars");
+        assertThat(planetOutput.getDescription()).isEqualTo("Test content");
+        assertThat(planetOutput.getVolume()).isEqualTo(1.6318);
+        assertThat(planetOutput.getWeight()).isEqualTo(6.4171);
+        assertThat(planetOutput.getSquare()).isEqualTo(1.4437);
     }
 }
