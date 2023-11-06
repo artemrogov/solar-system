@@ -27,4 +27,9 @@ public class SimpleSubscriptionQueryResolver {
     public Flux<String>simpleListSubscription(){
         return simpleFluxRepository.getStreamStrings();
     }
+
+    @SubscriptionMapping("planetStreamSubscription")
+    public Flux<PlanetOutput>getPlanetsStream(){
+        return Flux.fromStream(planetQueryCommand.getAll().stream());
+    }
 }

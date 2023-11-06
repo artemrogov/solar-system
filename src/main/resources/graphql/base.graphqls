@@ -38,4 +38,5 @@ type Mutation{
 type Subscription {
     planetSubscription:[PlanetOutput]
     simpleListSubscription:String
+    planetStreamSubscription:[PlanetOutput]
 }
