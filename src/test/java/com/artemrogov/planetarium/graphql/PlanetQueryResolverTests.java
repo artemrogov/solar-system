@@ -18,7 +18,7 @@ public class PlanetQueryResolverTests {
     private GraphQlTester graphQlTester;
 
     @Test
-    void getPlanetByIdTest(){
+    void getPlanetById(){
         this.graphQlTester.document("""
                         query planet($id: ID!) {
                             planetById(id: $id) {
@@ -54,7 +54,7 @@ public class PlanetQueryResolverTests {
         assertThat(planetOutput.getId()).isEqualTo(100);
         assertThat(planetOutput.getVolume()).isEqualTo(1.321);
         assertThat(planetOutput.getWeight()).isEqualTo(317.8);
-        assertThat(planetOutput.getSquare()).isEqualTo(120.4);
+        assertThat(planetOutput.getSquare()).isEqualTo(567.45);
     }
 
     @Test
@@ -80,5 +80,90 @@ public class PlanetQueryResolverTests {
         Assertions.assertNotNull(planets.get(0).getId());
         Assertions.assertNotNull(planets.get(0).getName());
 
+    }
+
+    @Test
+    void createPlanet(){
+        PlanetOutput planetOutput =  this.graphQlTester.document("""
+                mutation planetMutation {
+                  createPlanet(planetInput:{
+                    name:"Mars",
+                    description:"Test content"
+                    weight:6.4171
+                    square: 1.4437
+                    volume:1.6318
+                  }){
+                    id
+                    name
+                    description
+                    weight
+                    square
+                    volume
+                  }
+                }
+                """).execute()
+                .path("data.createPlanet")
+                .entity(PlanetOutput.class)
+                .get();
+        Assertions.assertNotNull(planetOutput);
+        assertThat(planetOutput.getName()).isEqualTo("Mars");
+        assertThat(planetOutput.getDescription()).isEqualTo("Test content");
+        assertThat(planetOutput.getVolume()).isEqualTo(1.6318);
+        assertThat(planetOutput.getWeight()).isEqualTo(6.4171);
+        assertThat(planetOutput.getSquare()).isEqualTo(1.4437);
+    }
+
+    @Test
+    void updatePlanetData(){
+         PlanetOutput planetOutput = this.graphQlTester.document("""
+                   mutation updateDataPlanet($id: ID!){
+                     editPlanet(id:$id,planetUpdatedInput:{
+                        square:567.45
+                     }){
+                       id
+                       square
+                     }
+                   }
+                 """)
+                 .variable("id","100")
+                 .execute()
+                 .path("data.editPlanet")
+                 .entity(PlanetOutput.class)
+                 .get();
+        assertThat(planetOutput.getSquare()).isEqualTo(567.45);
+    }
+
+    @Test
+    void destroyPlanetData(){
+        String query = """
+                mutation planetMutation {
+                  createPlanet(planetInput:{
+                    name:"Mars",
+                    description:"Test content"
+                    weight:6.4171
+                    square: 1.4437
+                    volume:1.6318
+                  }){
+                    id
+                    name
+                    description
+                    weight
+                    square
+                    volume
+                  }
+                }
+                """;
+        PlanetOutput planetOutputCreated = this.graphQlTester.document(query)
+                .execute()
+                .path("data.createPlanet")
+                .entity(PlanetOutput.class)
+                .get();
+
+        this.graphQlTester.document("""
+                mutation destroyDataPlanet($id:ID!){
+                  destroyPlanet(id:$id)
+                }
+                """).variable("id",planetOutputCreated.getId())
+                .executeAndVerify();
     }
 }
